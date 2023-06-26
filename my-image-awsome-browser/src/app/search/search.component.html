@@ -1,0 +1,39 @@
+<div>
+  <h2>Search Photos</h2>
+  <form>
+    <label for="keyword">Keyword:</label>
+    <input type="text" id="keyword" name="keyword" [(ngModel)]="keyword" required>
+    <br>
+    <label for="imageSize">Image Size:</label>
+    <select id="imageSize" name="imageSize" [(ngModel)]="imageSize">
+      <option value="">Any</option>
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+    <br>
+    <label for="minDate">Min Upload Date:</label>
+    <input type="date" id="minDate" name="minDate" [(ngModel)]="minUploadDate">
+    <br>
+    <label for="maxDate">Max Upload Date:</label>
+    <input type="date" id="maxDate" name="maxDate" [(ngModel)]="maxUploadDate">
+    <br>
+    <label for="nsfw">NSFW:</label>
+    <input type="checkbox" id="nsfw" name="nsfw" [(ngModel)]="nsfw">
+    <br>
+    <label for="checkbox">Is in gallery</label>
+    <input type="checkbox" name="gallery" [(ngModel)]="gallery">
+    <br>
+    <button>Add Tags</button>
+    <br>
+    <label for="sort">Sort:</label>
+    <select id="sort" name="sort" [(ngModel)]="sort">
+      <option value="">Relevant</option>
+      <option value="uploaded">Date uploaded</option>
+      <option value="taken">Date taken</option>
+      <option value="intersting">Intersting</option>
+    </select>
+    <br>
+    <button (click)="test()">Search</button>
+  </form>
+</div>
