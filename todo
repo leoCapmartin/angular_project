@@ -1,0 +1,3 @@
+1. recuperer toutes les photos -> done
+2. call api on flickr.photos.getInfo -> TODO
+3. formater les photos sur la page -> TODO
