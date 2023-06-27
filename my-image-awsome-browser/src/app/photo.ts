@@ -3,5 +3,6 @@ export interface Photo {
   title: string;
   imageUrl: string;
   ownerName: string;
+  ownerId: string;
   thumbnailUrl: string;
 }

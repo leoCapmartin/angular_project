@@ -3,7 +3,7 @@
   <div>
     <button>toggle sliding</button>
     <div>
-      <app-image></app-image>
+      <app-image *ngFor="let photo of photos" [photo]="photo"></app-image>
     </div>
   </div>
   <ng-template #noResults>

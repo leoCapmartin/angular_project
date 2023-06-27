@@ -2,36 +2,35 @@
   <h2>Search Photos</h2>
   <form>
     <label for="keyword">Keyword:</label>
-    <input type="text" id="keyword" name="keyword" [(ngModel)]="keyword" required>
+    <input type="text" id="keyword" name="keyword" [(ngModel)]="query.searchTerm" required>
     <br>
     <label for="imageSize">Image Size:</label>
-    <select id="imageSize" name="imageSize" [(ngModel)]="imageSize">
-      <option value="">Any</option>
-      <option value="small">Small</option>
-      <option value="medium">Medium</option>
-      <option value="large">Large</option>
+    <select id="imageSize" name="imageSize" [(ngModel)]="query.imageSize">
+      <option value="t">Small</option>
+      <option value="w">Medium</option>
+      <option value="z">Large</option>
     </select>
     <br>
     <label for="minDate">Min Upload Date:</label>
-    <input type="date" id="minDate" name="minDate" [(ngModel)]="minUploadDate">
+    <input type="date" id="minDate" name="minDate" [(ngModel)]="query.minUploadDate">
     <br>
     <label for="maxDate">Max Upload Date:</label>
-    <input type="date" id="maxDate" name="maxDate" [(ngModel)]="maxUploadDate">
+    <input type="date" id="maxDate" name="maxDate" [(ngModel)]="query.maxUploadDate">
     <br>
     <label for="nsfw">NSFW:</label>
-    <input type="checkbox" id="nsfw" name="nsfw" [(ngModel)]="nsfw">
+    <input type="checkbox" id="nsfw" name="nsfw" [(ngModel)]="query.nsfw">
     <br>
     <label for="checkbox">Is in gallery</label>
-    <input type="checkbox" name="gallery" [(ngModel)]="gallery">
+    <input type="checkbox" name="gallery" [(ngModel)]="query.isInGallery">
     <br>
     <button>Add Tags</button>
     <br>
     <label for="sort">Sort:</label>
-    <select id="sort" name="sort" [(ngModel)]="sort">
-      <option value="">Relevant</option>
-      <option value="uploaded">Date uploaded</option>
-      <option value="taken">Date taken</option>
-      <option value="intersting">Intersting</option>
+    <select id="sort" name="sort" [(ngModel)]="query.sort">
+      <option value="relevance">Relevant</option>
+      <option value="date-posted-desc">Date uploaded</option>
+      <option value="date-taken-desc">Date taken</option>
+      <option value="interstingness-desc">Intersting</option>
     </select>
     <br>
     <button (click)="search()">Search</button>

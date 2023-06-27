@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Photo } from '../photo';
+import { PhotosListService } from '../photos-list.service';
 
 @Component({
   selector: 'app-result',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent {
-
+  photos: Photo[] = [];
+  constructor(private photoListService: PhotosListService) {
+    photoListService.getPhotos.subscribe(photos => {
+      this.photos = photos;
+    });
+  }
 }
