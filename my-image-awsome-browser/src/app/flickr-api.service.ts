@@ -22,7 +22,7 @@ export class FlickrApiService {
       .set('api_key', this.apiKey)
   }
 
-  searchImages(searchQuery: SearchQuery, page: Number): Observable<Photo[]> {
+  searchImages(searchQuery: SearchQuery): Observable<Photo[]> {
     const params = this.getDefaultParams("flickr.photos.search")
       .set('api_key', this.apiKey)
       .set('text', searchQuery.searchTerm)
@@ -33,7 +33,7 @@ export class FlickrApiService {
       .set('max_upload_date', searchQuery.maxUploadDate)
       // .set('tags', searchQuery.additionalTags[0])
       .set('in_gallery', searchQuery.isInGallery ? '1' : '0')
-      .set('page', page.toString());
+      .set('page', searchQuery.page.toString());
 
     return this.http.get<any>(this.apiUrl, { params })
       .pipe(

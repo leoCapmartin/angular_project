@@ -16,6 +16,7 @@ export class ImageComponent {
     imageUrl: "",
     thumbnailUrl: ""
   };
+  @Input() grid: Boolean = false;
 
   constructor(private flickrApiService: FlickrApiService) {}
 }

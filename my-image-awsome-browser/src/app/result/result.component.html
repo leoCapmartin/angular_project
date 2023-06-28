@@ -1,10 +1,17 @@
 <div>
   <h2>Search Results</h2>
   <div>
-    <button>toggle sliding</button>
-    <div>
-      <app-image *ngFor="let photo of photos" [photo]="photo"></app-image>
-    </div>
+    <button (click)="toggleGrid()">toggle sliding</button>
+    <div *ngIf="grid; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+      <app-image *ngFor="let photo of photos" [photo]="photo" [grid]="grid"></app-image>
+      <button (click)="getNewPic">Load-More</button>
+    </ng-template>
+    <ng-template #elseBlock>
+      <button (click)="changeImg(-1)">&#60;</button>
+      <app-image [photo]="photos[index]" [grid]="grid"></app-image>
+      <button (click)="changeImg(1)">&#62;</button>
+    </ng-template>
   </div>
   <ng-template #noResults>
     <p>No results found.</p>

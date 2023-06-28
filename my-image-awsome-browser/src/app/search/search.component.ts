@@ -4,6 +4,7 @@ import { SearchQuery } from '../search-query';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Photo } from '../photo';
 import { PhotosListService } from '../photos-list.service';
+import { SearchQueryService } from '../search-query.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -19,20 +20,19 @@ export class SearchComponent implements OnInit {
     isInGallery:  false,
     additionalTags: [],
     sort:  "relevance",
+    page: 1,
   }
 
-  currentPage: Number = 1;
-
   constructor(private flickrApiService: FlickrApiService,
-    private photosListService: PhotosListService) {}
+    private photosListService: PhotosListService, private searchQueryService: SearchQueryService) {}
 
   ngOnInit(): void {
+    this.searchQueryService.setQuery(this.query);
   }
 
   search() {
-
-
-    this.flickrApiService.searchImages(this.query, this.currentPage).subscribe(data => {
+    this.searchQueryService.setQuery(this.query);
+    this.flickrApiService.searchImages(this.query).subscribe(data => {
       // console.log(data);
       this.photosListService.setPhotos(data);
     },

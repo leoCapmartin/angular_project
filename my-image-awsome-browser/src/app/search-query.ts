@@ -7,4 +7,5 @@ export interface SearchQuery {
   additionalTags: string[];
   isInGallery: boolean;
   imageSize: string;
+  page: number;
 }

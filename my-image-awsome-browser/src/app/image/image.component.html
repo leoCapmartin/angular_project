@@ -1,4 +1,7 @@
-<img src="{{photo.imageUrl}}" alt="{{photo.title}}">
-<p>{{photo.title}}</p>
-<p>{{photo.ownerName}}</p>
-
+<div *ngIf="grid; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}">
+</ng-template>
+<ng-template #elseBlock>
+    <img src="{{photo.imageUrl}}" alt="{{photo.title}}">
+</ng-template>
