@@ -5,7 +5,7 @@
     <div *ngIf="grid; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
       <app-image *ngFor="let photo of photos" [photo]="photo" [grid]="grid"></app-image>
-      <button (click)="getNewPic">Load-More</button>
+      <button (click)="getNewPic()">Load-More</button>
     </ng-template>
     <ng-template #elseBlock>
       <button (click)="changeImg(-1)">&#60;</button>
