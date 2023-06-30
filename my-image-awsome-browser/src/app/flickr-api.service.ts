@@ -23,6 +23,7 @@ export class FlickrApiService {
   }
 
   searchImages(searchQuery: SearchQuery): Observable<Photo[]> {
+    const tags = Array.from(searchQuery.additionalTags);
     const params = this.getDefaultParams("flickr.photos.search")
       .set('api_key', this.apiKey)
       .set('text', searchQuery.searchTerm)
@@ -31,7 +32,7 @@ export class FlickrApiService {
       .set('sort', searchQuery.sort)
       .set('min_upload_date', searchQuery.minUploadDate)
       .set('max_upload_date', searchQuery.maxUploadDate)
-      // .set('tags', searchQuery.additionalTags[0])
+      .set('tags', tags.join(", "))
       .set('in_gallery', searchQuery.isInGallery ? '1' : '0')
       .set('page', searchQuery.page.toString());
 
@@ -72,12 +73,13 @@ export class FlickrApiService {
   getLocation(photoId: string) {
     const params = this.getDefaultParams("flickr.photos.geo.getLocation")
       .set('photo_id', photoId);
-    console.log("test")
+
     return this.http.get<any>(this.apiUrl, { params })
       .pipe(map(response => {
-          console.log(response)
-          return {
-          };
+          if (response.stat !== "ok") return "unknown";
+
+          const locationInfo = response.photo.location
+          return `${locationInfo.locality._content}, ${locationInfo.country._content}`;
         }), catchError(error => {
           console.log(error);
           throw error;

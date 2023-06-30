@@ -13,7 +13,7 @@ export class SearchQueryService {
     maxUploadDate:  "",
     nsfw:  false,
     isInGallery:  false,
-    additionalTags: [],
+    additionalTags: new Set<string>(),
     sort:  "relevance",
     page: 1,
   });

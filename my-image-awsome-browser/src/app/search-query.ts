@@ -4,7 +4,7 @@ export interface SearchQuery {
   maxUploadDate: string;
   sort: string;
   nsfw: boolean;
-  additionalTags: string[];
+  additionalTags: Set<string>;
   isInGallery: boolean;
   imageSize: string;
   page: number;

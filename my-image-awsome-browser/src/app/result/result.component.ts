@@ -13,7 +13,9 @@ import { Details } from '../details';
 })
 export class ResultComponent {
   display = "none"
+
   photos: Photo[] = [];
+
   query: SearchQuery = {
     searchTerm: "",
     imageSize:  "w",
@@ -21,14 +23,24 @@ export class ResultComponent {
     maxUploadDate:  "",
     nsfw:  false,
     isInGallery:  false,
-    additionalTags: [],
+    additionalTags: new Set<string>(),
     sort:  "relevance",
     page: 1,
   };
+
+  details : Details = {
+    author : "",
+    date : "",
+    position : ""
+  }
+
   index: number = 0;
   grid: Boolean = true;
 
-  constructor(private photoListService: PhotosListService, private searchQueryService: SearchQueryService, private flickrApiService: FlickrApiService) {
+  constructor(private photoListService: PhotosListService,
+    private searchQueryService: SearchQueryService,
+    private flickrApiService: FlickrApiService)
+  {
     photoListService.getPhotos.subscribe(photos => {
       this.photos = photos;
     });
@@ -40,27 +52,25 @@ export class ResultComponent {
   toggleGrid() {
     this.grid = !this.grid;
   }
-  details : Details = 
-  {
-    author : "",
-    date : "",
-    position : ""
-  }
+
   public close(status : string){
     this.display = status
   }
+
   public showDetails(pic : Photo){
-  
-    if (this.display == "none")
-    {
-      this.display = "block"
-    }
+
     this.flickrApiService.getPhotoInfos(pic.id).subscribe((data) => {
       this.details.author = data.author;
       this.details.date = data.date;
       this.details.position = "unknown"
+      if (this.display == "none")
+      {
+        this.display = "block"
+      }
+
     })
     this.flickrApiService.getLocation(pic.id).subscribe((data) =>{
+      this.details.position = data;
     })
   }
 

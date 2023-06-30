@@ -1,21 +1,26 @@
 <div>
   <h2>Search Results</h2>
   <div>
-    <button (click)="toggleGrid()">toggle sliding</button>
+    <button (click)="toggleGrid()">Toggle Sliding</button>
     <div *ngIf="grid; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
-      <app-image *ngFor="let photo of photos" [photo]="photo" [grid]="grid" (click)="this.showDetails(photo)"></app-image>
-      <button (click)="getNewPic()">Load-More</button>
+      <div class="grid-container">
+        <app-image *ngFor="let photo of photos" [photo]="photo" [grid]="grid" (click)="showDetails(photo)"></app-image>
+      </div>
+      <button (click)="getNewPic()">Load More</button>
     </ng-template>
     <ng-template #elseBlock>
-      <button (click)="changeImg(-1)">&#60;</button>
-      <app-image [photo]="photos[index]" [grid]="grid"  (click)="this.showDetails(photos[index])"></app-image>
-      <button (click)="changeImg(1)">&#62;</button>
+      <div class="sliding-container">
+        <button (click)="changeImg(-1)">&#60;</button>
+        <app-image [photo]="photos[index]" [grid]="grid"  (click)="showDetails(photos[index])"></app-image>
+        <button (click)="changeImg(1)">&#62;</button>
+      </div>
     </ng-template>
   </div>
   <ng-template #noResults>
     <p>No results found.</p>
   </ng-template>
 </div>
-<app-photo-info style="display: {{this.display}}" [detail]="details" (newItemEvent)="close($event)"></app-photo-info>
-<div id="locked" style="display: {{this.display}}"></div>
+<app-photo-info style="display: {{display}}" [detail]="details" (newItemEvent)="close($event)"></app-photo-info>
+<div id="locked" style="display: {{display}}"></div>
+

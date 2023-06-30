@@ -1,38 +1,50 @@
-<div>
-  <h2>Search Photos</h2>
-  <form>
-    <label for="keyword">Keyword:</label>
+<div class="search-container">
+  <div class="search-bar">
     <input type="text" id="keyword" name="keyword" [(ngModel)]="query.searchTerm" required>
-    <br>
-    <label for="imageSize">Image Size:</label>
-    <select id="imageSize" name="imageSize" [(ngModel)]="query.imageSize">
-      <option value="t">Small</option>
-      <option value="w">Medium</option>
-      <option value="z">Large</option>
-    </select>
-    <br>
-    <label for="minDate">Min Upload Date:</label>
-    <input type="date" id="minDate" name="minDate" [(ngModel)]="query.minUploadDate">
-    <br>
-    <label for="maxDate">Max Upload Date:</label>
-    <input type="date" id="maxDate" name="maxDate" [(ngModel)]="query.maxUploadDate">
-    <br>
-    <label for="nsfw">NSFW:</label>
-    <input type="checkbox" id="nsfw" name="nsfw" [(ngModel)]="query.nsfw">
-    <br>
-    <label for="checkbox">Is in gallery</label>
-    <input type="checkbox" name="gallery" [(ngModel)]="query.isInGallery">
-    <br>
-    <button>Add Tags</button>
-    <br>
-    <label for="sort">Sort:</label>
-    <select id="sort" name="sort" [(ngModel)]="query.sort">
-      <option value="relevance">Relevant</option>
-      <option value="date-posted-desc">Date uploaded</option>
-      <option value="date-taken-desc">Date taken</option>
-      <option value="interstingness-desc">Intersting</option>
-    </select>
-    <br>
     <button (click)="search()">Search</button>
-  </form>
+  </div>
+  <div class="filters">
+    <div class="date-filters">
+      <label for="minDate">Minimum Upload Date:</label>
+      <input type="date" id="minDate" name="minDate" [(ngModel)]="query.minUploadDate">
+      <br>
+      <label for="maxDate">Maximum Upload Date:</label>
+      <input type="date" id="maxDate" name="maxDate" [(ngModel)]="query.maxUploadDate">
+    </div>
+    <div class="checkbox-filters">
+      <label for="nsfw">NSFW:</label>
+      <input type="checkbox" id="nsfw" name="nsfw" [(ngModel)]="query.nsfw">
+      <br>
+      <label for="checkbox">Is in gallery</label>
+      <input type="checkbox" name="gallery" [(ngModel)]="query.isInGallery">
+    </div>
+    <div class="select-filters">
+      <label for="imageSize">Image Size:</label>
+      <select id="imageSize" name="imageSize" [(ngModel)]="query.imageSize">
+        <option value="t">Small</option>
+        <option value="w">Medium</option>
+        <option value="z">Large</option>
+      </select>
+      <br>
+      <label for="sort">Sort:</label>
+      <select id="sort" name="sort" [(ngModel)]="query.sort">
+        <option value="relevance">Relevant</option>
+        <option value="date-posted-desc">Date uploaded</option>
+        <option value="date-taken-desc">Date taken</option>
+        <option value="interstingness-desc">Intersting</option>
+      </select>
+    </div>
+    <div id="tag-section">
+      <div class="tag-button">
+        <input type="text" name="new-tag" [(ngModel)]="tagName">
+        <button (click)="addTag()">Add Tag</button>
+      </div>
+      <div id="tag-list">
+        <div *ngFor="let tag of query.additionalTags" class="tag" (click)="removeTag(tag)">
+          {{tag}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

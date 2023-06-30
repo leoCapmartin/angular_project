@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FlickrApiService } from '../flickr-api.service';
 import { SearchQuery } from '../search-query';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Photo } from '../photo';
 import { PhotosListService } from '../photos-list.service';
 import { SearchQueryService } from '../search-query.service';
+import { query } from '@angular/animations';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -18,10 +18,12 @@ export class SearchComponent implements OnInit {
     maxUploadDate:  "",
     nsfw:  false,
     isInGallery:  false,
-    additionalTags: [],
+    additionalTags: new Set<string>(),
     sort:  "relevance",
     page: 1,
   }
+
+  tagName: string = "";
 
   constructor(private flickrApiService: FlickrApiService,
     private photosListService: PhotosListService, private searchQueryService: SearchQueryService) {}
@@ -30,10 +32,20 @@ export class SearchComponent implements OnInit {
     this.searchQueryService.setQuery(this.query);
   }
 
+  addTag() {
+    if (this.tagName.trim() === "") return;
+
+    this.query.additionalTags.add(this.tagName);
+    this.tagName = "";
+  }
+
+  removeTag(tag: string) {
+    this.query.additionalTags.delete(tag);
+  }
+
   search() {
     this.searchQueryService.setQuery(this.query);
     this.flickrApiService.searchImages(this.query).subscribe(data => {
-      // console.log(data);
       this.photosListService.setPhotos(data);
     },
     (err: HttpErrorResponse) => {
