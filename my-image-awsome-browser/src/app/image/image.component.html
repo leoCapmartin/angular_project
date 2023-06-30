@@ -1,7 +1,7 @@
 <div *ngIf="grid; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-    <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}" (click)="this.showDetails(photo)">
+    <img src="{{photo.thumbnailUrl}}" alt="{{photo.title}}">
 </ng-template>
 <ng-template #elseBlock>
-    <img src="{{photo.imageUrl}}" alt="{{photo.title}}" (click)="this.showDetails(photo)">
+    <img src="{{photo.imageUrl}}" alt="{{photo.title}}">
 </ng-template>

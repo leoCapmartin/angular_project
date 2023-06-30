@@ -16,10 +16,6 @@ export class ImageComponent {
     imageUrl: "",
     thumbnailUrl: ""
   };
-  public showDetails(pic : Photo)
-  {
-    alert(pic.ownerName)
-  }
   @Input() grid: Boolean = false;
 
   constructor(private flickrApiService: FlickrApiService) {}

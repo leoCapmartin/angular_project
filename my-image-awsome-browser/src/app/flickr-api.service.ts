@@ -59,8 +59,24 @@ export class FlickrApiService {
       .pipe(map(response => {
           const photo = response.photo;
           return {
-            url: photo.urls.url[0],
-            ownerName: photo.owner.username
+            author : photo.owner.username,
+            date : photo.dates.taken,
+            position : "unknown"
+          };
+        }), catchError(error => {
+          console.log(error);
+          throw error;
+        })
+      );
+  }
+  getLocation(photoId: string) {
+    const params = this.getDefaultParams("flickr.photos.geo.getLocation")
+      .set('photo_id', photoId);
+    console.log("test")
+    return this.http.get<any>(this.apiUrl, { params })
+      .pipe(map(response => {
+          console.log(response)
+          return {
           };
         }), catchError(error => {
           console.log(error);

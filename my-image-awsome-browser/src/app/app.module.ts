@@ -8,6 +8,7 @@ import { ImageComponent } from './image/image.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { PhotoInfoComponent } from './photo-info/photo-info.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HttpClientModule } from "@angular/common/http";
     SearchComponent,
     ResultComponent,
     ImageComponent,
+    PhotoInfoComponent,
   ],
   imports: [
     BrowserModule,

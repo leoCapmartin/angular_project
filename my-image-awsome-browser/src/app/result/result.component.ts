@@ -4,6 +4,7 @@ import { PhotosListService } from '../photos-list.service';
 import { SearchQueryService } from '../search-query.service';
 import { SearchQuery } from '../search-query';
 import { FlickrApiService } from '../flickr-api.service';
+import { Details } from '../details';
 
 @Component({
   selector: 'app-result',
@@ -11,6 +12,7 @@ import { FlickrApiService } from '../flickr-api.service';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent {
+  display = "none"
   photos: Photo[] = [];
   query: SearchQuery = {
     searchTerm: "",
@@ -37,6 +39,29 @@ export class ResultComponent {
 
   toggleGrid() {
     this.grid = !this.grid;
+  }
+  details : Details = 
+  {
+    author : "",
+    date : "",
+    position : ""
+  }
+  public close(status : string){
+    this.display = status
+  }
+  public showDetails(pic : Photo){
+  
+    if (this.display == "none")
+    {
+      this.display = "block"
+    }
+    this.flickrApiService.getPhotoInfos(pic.id).subscribe((data) => {
+      this.details.author = data.author;
+      this.details.date = data.date;
+      this.details.position = "unknown"
+    })
+    this.flickrApiService.getLocation(pic.id).subscribe((data) =>{
+    })
   }
 
   getNewPic() {
