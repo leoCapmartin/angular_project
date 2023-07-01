@@ -13,6 +13,9 @@ export class PhotoInfoComponent {
     date : "",
     position : ""
   }
+
+  @Input() imageUrl: string = "";
+
   @Output() newItemEvent = new EventEmitter<string>();
 
   public closeWindow(){

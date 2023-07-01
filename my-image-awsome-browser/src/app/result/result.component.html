@@ -1,7 +1,7 @@
 <div>
   <h2>Search Results</h2>
   <div>
-    <button (click)="toggleGrid()">Toggle Sliding</button>
+    <button (click)="toggleGrid()" id="toggle-slide">Toggle Sliding</button>
     <div *ngIf="grid; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
       <div class="grid-container">
@@ -21,6 +21,5 @@
     <p>No results found.</p>
   </ng-template>
 </div>
-<app-photo-info style="display: {{display}}" [detail]="details" (newItemEvent)="close($event)"></app-photo-info>
+<app-photo-info style="display: {{display}}" [detail]="details" [imageUrl]="currentUrl" (newItemEvent)="close($event)"></app-photo-info>
 <div id="locked" style="display: {{display}}"></div>
-

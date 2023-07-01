@@ -1,4 +1,9 @@
-<p>Author : {{detail.author}}</p>
-<p>Taken : {{detail.date}}</p>
-<p>Position : {{detail.position}}</p>
-<button (click)="closeWindow()">Close</button>
+<div id="container">
+  <img src="{{imageUrl}}">
+  <div id="infos">
+    <p>Author : {{detail.author}}</p>
+    <p>Taken : {{detail.date}}</p>
+    <p>Position : {{detail.position}}</p>
+  </div>
+  <button (click)="closeWindow()"></button>
+</div>

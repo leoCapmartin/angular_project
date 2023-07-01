@@ -57,3 +57,23 @@ app-photo-info{
   background-color: gray;
   opacity: 0.33;
 }
+
+button {
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#toggle-slide {
+  margin-bottom: 20px;
+}

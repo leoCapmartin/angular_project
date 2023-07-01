@@ -44,6 +44,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
+    if (this.query.searchTerm.trim() === "") return;
     this.searchQueryService.setQuery(this.query);
     this.flickrApiService.searchImages(this.query).subscribe(data => {
       this.photosListService.setPhotos(data);

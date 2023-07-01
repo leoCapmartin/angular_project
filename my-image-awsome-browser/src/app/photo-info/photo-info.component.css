@@ -1,0 +1,33 @@
+#container {
+  display: flex;
+  align-items: center;
+}
+
+#container img {
+  flex: 0 0 auto; 
+}
+
+#infos {
+  margin-left: 20px; 
+  margin-right: 20px; 
+  width: max-content;
+}
+
+#container button {
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#container button:before {
+  content: "\00D7"; /* Utilise le caractère "multiplication sign" (×) */
+}
+
+#container button:hover {
+  color: red; /* Changez la couleur au survol selon vos préférences */
+}
+

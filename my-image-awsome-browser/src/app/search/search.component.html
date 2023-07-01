@@ -1,6 +1,6 @@
 <div class="search-container">
   <div class="search-bar">
-    <input type="text" id="keyword" name="keyword" [(ngModel)]="query.searchTerm" required>
+    <input type="text" id="keyword" name="keyword" [(ngModel)]="query.searchTerm" (keydown.enter)="search()" required>
     <button (click)="search()">Search</button>
   </div>
   <div class="filters">
@@ -36,7 +36,7 @@
     </div>
     <div id="tag-section">
       <div class="tag-button">
-        <input type="text" name="new-tag" [(ngModel)]="tagName">
+        <input type="text" name="new-tag" [(ngModel)]="tagName" (keydown.enter)="addTag()">
         <button (click)="addTag()">Add Tag</button>
       </div>
       <div id="tag-list">

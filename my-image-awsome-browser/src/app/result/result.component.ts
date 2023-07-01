@@ -37,6 +37,8 @@ export class ResultComponent {
   index: number = 0;
   grid: Boolean = true;
 
+  currentUrl: string = "";
+
   constructor(private photoListService: PhotosListService,
     private searchQueryService: SearchQueryService,
     private flickrApiService: FlickrApiService)
@@ -63,6 +65,7 @@ export class ResultComponent {
       this.details.author = data.author;
       this.details.date = data.date;
       this.details.position = "unknown"
+      this.currentUrl = pic.imageUrl;
       if (this.display == "none")
       {
         this.display = "block"

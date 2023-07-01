@@ -6,7 +6,7 @@
   background-color: #f5f5f5;
 }
 
-.search-bar {
+.search-bar, .tag-button {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -16,13 +16,18 @@
   background-color: white;
 }
 
-.search-bar input {
+.search-bar input, .tag-button input {
   border: none;
   flex-grow: 1;
   padding: 8px;
 }
 
-.search-bar button {
+.tag-button {
+  width: auto;
+  margin-left: 20px;
+}
+
+button {
   margin-left: -1px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -34,7 +39,7 @@
   transition: background-color 0.3s;
 }
 
-.search-bar button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
@@ -61,10 +66,6 @@
   display: block;
   margin-bottom: 5px;
 }
-
-/* .tag-button { */
-/**/
-/* } */
 
 .tag-button {
   margin-bottom: 5px;
